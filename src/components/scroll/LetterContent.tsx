@@ -22,10 +22,12 @@ export default function LetterContent() {
                 font-serif
                 leading-relaxed
                 space-y-5
+                
                 text-sm
                 md:text-base
                 text-rose-950/80
                 tracking-wide
+                text-justify
               ">
         {letter.paragraphs.map((paragraph, index) => (
           <p key={index}>

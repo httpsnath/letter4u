@@ -2,20 +2,40 @@ import { useState } from "react";
 import { motion, Variants } from "framer-motion";
 import LetterContent from "./LetterContent";
 
-export default function Envelope() {
+type EnvelopeProps = {
+  onOpen?: () => void;
+};
+
+export default function Envelope({
+  onOpen,
+}: EnvelopeProps) {
   const [isOpen, setIsOpen] = useState(false);
 
+const wrapperVariants: Variants = {
+  closed: {
+    y: [0, -3, 1, -2, 0],
+    rotate: [0, 0.4, -0.3, 0.2, 0],
 
-  const wrapperVariants: Variants = {
-    closed: {
-      y: 0,
+    transition: {
+      y: {
+        duration: 6,
+        repeat: Infinity,
+        ease: "easeInOut",
+      },
+
+      rotate: {
+        duration: 7,
+        repeat: Infinity,
+        ease: "easeInOut",
+      },
     },
+  },
 
-    open: {
-      y: 0,
-    },
-  };
-
+  open: {
+    y: 0,
+    rotate: 0,
+  },
+};
 
   const envelopeBodyVariants: Variants = {
     closed: {
@@ -26,7 +46,6 @@ export default function Envelope() {
       y: 0,
     },
   };
-
 
   const flapVariants: Variants = {
     closed: {
@@ -64,7 +83,6 @@ export default function Envelope() {
     },
   };
 
-
   const letterVariants: Variants = {
     closed: {
       height: "85%",
@@ -94,7 +112,6 @@ export default function Envelope() {
       zIndex: 40,
 
       transition: {
-
         height: {
           duration: 0.9,
           delay: 0.55,
@@ -114,14 +131,12 @@ export default function Envelope() {
     },
   };
 
-
   const noiseTexture = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E")`;
 
   return (
     <div className="w-full flex items-center justify-center relative">
-      {/* ========================================================
-          SCROLLBAR
-      ========================================================= */}
+
+
       <style>{`
         .letter-scroll::-webkit-scrollbar {
           width: 6px;
@@ -132,10 +147,11 @@ export default function Envelope() {
         }
 
         .letter-scroll::-webkit-scrollbar-thumb {
-          background-color: #fecdd3;
+          background-color: #D8A7E3;
           border-radius: 20px;
         }
       `}</style>
+
 
 
       <motion.div
@@ -154,21 +170,24 @@ export default function Envelope() {
         }}
       >
 
+
         <motion.div
           variants={envelopeBodyVariants}
           className="
             absolute
             inset-0
             bg-gradient-to-br
-            from-rose-900
-            via-rose-800
-            to-rose-950
+            from-[#7E4A89]
+            via-[#6D3B78]
+            to-[#4B2356]
             rounded-md
             shadow-2xl
             overflow-hidden
             z-10
           "
         >
+
+
           <div
             className="
               absolute
@@ -180,7 +199,9 @@ export default function Envelope() {
               backgroundImage: noiseTexture,
             }}
           />
+
         </motion.div>
+
 
         <motion.div
           variants={letterVariants}
@@ -192,26 +213,29 @@ export default function Envelope() {
             bg-[#fdfaf5]
             rounded-sm
             shadow-xl
-            p-6
-            md:p-8
+            p-0
+            md:p-3
             overflow-y-auto
             letter-scroll
             origin-top
             text-slate-800
             border
-            border-rose-50
+            border-[#E9D5FF]
           "
           style={{
             backgroundImage: noiseTexture,
           }}
         >
+
           <div className="max-w-prose mx-auto">
+
 
             <LetterContent />
 
 
             {isOpen && (
               <div className="mt-12 flex justify-center pb-4">
+
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
@@ -221,13 +245,13 @@ export default function Envelope() {
                     px-6
                     py-2
                     border
-                    border-rose-200
-                    text-rose-800
+                    border-[#D8A7E3]
+                    text-[#6D3B78]
                     font-serif
                     text-sm
                     uppercase
                     tracking-widest
-                    hover:bg-rose-50
+                    hover:bg-[#F3E8FF]
                     transition-colors
                     rounded-sm
                     cursor-pointer
@@ -235,10 +259,14 @@ export default function Envelope() {
                 >
                   Fold Away
                 </button>
+
               </div>
             )}
+
           </div>
+
         </motion.div>
+
 
 
         <motion.svg
@@ -255,9 +283,10 @@ export default function Envelope() {
           "
         >
 
+
           <polygon
             points="0,0 145,100 0,200"
-            fill="#9f1239"
+            fill="#7E4A89"
           />
 
           <polygon
@@ -267,9 +296,10 @@ export default function Envelope() {
           />
 
 
+
           <polygon
             points="300,0 155,100 300,200"
-            fill="#9f1239"
+            fill="#7E4A89"
           />
 
           <polygon
@@ -277,16 +307,17 @@ export default function Envelope() {
             fill="url(#flapGradient)"
             opacity="0.4"
           />
+
 
 
           <polygon
             points="0,200 150,95 300,200"
-            fill="#be123c"
+            fill="#8B4F96"
           />
 
           <path
             d="M0,200 L150,95 L300,200"
-            stroke="#f43f5e"
+            stroke="#C084D4"
             strokeWidth="0.5"
             fill="none"
             opacity="0.4"
@@ -294,6 +325,7 @@ export default function Envelope() {
 
 
           <defs>
+
             <linearGradient
               id="flapGradient"
               x1="0%"
@@ -301,6 +333,7 @@ export default function Envelope() {
               x2="100%"
               y2="100%"
             >
+
               <stop
                 offset="0%"
                 stopColor="transparent"
@@ -308,12 +341,16 @@ export default function Envelope() {
 
               <stop
                 offset="100%"
-                stopColor="#4c0519"
+                stopColor="#3B1747"
                 stopOpacity="0.5"
               />
+
             </linearGradient>
+
           </defs>
+
         </motion.svg>
+
 
 
         <motion.div
@@ -330,6 +367,7 @@ export default function Envelope() {
             perspective: "1200px",
           }}
         >
+
           <motion.div
             variants={flapVariants}
             initial="closed"
@@ -348,9 +386,11 @@ export default function Envelope() {
             onClick={() => {
               if (!isOpen) {
                 setIsOpen(true);
+                onOpen?.();
               }
             }}
           >
+
 
             <svg
               viewBox="0 0 300 110"
@@ -368,44 +408,50 @@ export default function Envelope() {
 
               <polygon
                 points="0,0 150,110 300,0"
-                fill="#e11d48"
+                fill="#A85CAD"
                 filter="drop-shadow(0 5px 5px rgba(0,0,0,0.4))"
               />
 
-
               <path
                 d="M0,0 L150,110 L300,0"
-                stroke="#fda4af"
+                stroke="#D8A7E3"
                 strokeWidth="0.5"
                 fill="none"
-                opacity="0.5"
+                opacity="0.6"
               />
 
+
               <g transform="translate(150, 100)">
+
+             
                 <circle
                   cx="0"
                   cy="0"
                   r="15"
-                  fill="#7f1d1d"
+                  fill="#4B2356"
                   filter="drop-shadow(0px 3px 3px rgba(0,0,0,0.5))"
                 />
 
+   
                 <circle
                   cx="0"
                   cy="0"
                   r="12"
                   fill="none"
-                  stroke="#b91c1c"
+                  stroke="#7E4A89"
                   strokeWidth="1"
-                  opacity="0.8"
+                  opacity="0.9"
                 />
+
 
                 <path
                   d="M-4,0 L0,-4 L4,0 L0,4 Z"
-                  fill="#fca5a5"
-                  opacity="0.8"
+                  fill="#D8A7E3"
+                  opacity="0.9"
                 />
+
               </g>
+
             </svg>
 
 
@@ -423,21 +469,26 @@ export default function Envelope() {
                 transform: "rotateX(180deg)",
               }}
             >
+
               <polygon
                 points="0,0 150,110 300,0"
-                fill="#881337"
+                fill="#5A2D66"
               />
 
               <path
                 d="M0,0 L150,110 L300,0"
-                stroke="#be123c"
+                stroke="#8B4F96"
                 strokeWidth="0.5"
                 fill="none"
-                opacity="0.35"
+                opacity="0.45"
               />
+
             </svg>
+
           </motion.div>
+
         </motion.div>
+
 
 
         {!isOpen && (
@@ -458,7 +509,7 @@ export default function Envelope() {
               left-0
               right-0
               text-center
-              text-rose-900/60
+              text-[#6D3B78]/60
               font-serif
               italic
               text-sm
@@ -468,7 +519,9 @@ export default function Envelope() {
             Tap the seal to open
           </motion.div>
         )}
+
       </motion.div>
+
     </div>
   );
 }

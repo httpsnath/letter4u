@@ -8,9 +8,6 @@ export default function FlowerGarden() {
     return (
         <footer className="absolute bottom-0 left-0 w-full h-64 pointer-events-none">
 
-            {/* =====================================================
-                FLOWER 1
-            ====================================================== */}
             <motion.div
                 className="
                     absolute
@@ -47,10 +44,6 @@ export default function FlowerGarden() {
                 <Flower className="w-full" />
             </motion.div>
 
-
-            {/* =====================================================
-                FLOWER 2
-            ====================================================== */}
             <motion.div
                 className="
                     absolute
@@ -89,9 +82,7 @@ export default function FlowerGarden() {
             </motion.div>
 
 
-            {/* =====================================================
-                FLOWER2 1
-            ====================================================== */}
+
             <motion.div
                 className="
                     absolute
@@ -130,9 +121,7 @@ export default function FlowerGarden() {
             </motion.div>
 
 
-            {/* =====================================================
-                FLOWER2 2
-            ====================================================== */}
+   
             <motion.div
                 className="
                     absolute
@@ -171,9 +160,6 @@ export default function FlowerGarden() {
             </motion.div>
 
 
-            {/* =====================================================
-                FLOWER2 3
-            ====================================================== */}
             <motion.div
                 className="
                     absolute
@@ -212,9 +198,6 @@ export default function FlowerGarden() {
             </motion.div>
 
 
-            {/* =====================================================
-                FLOWER2 4
-            ====================================================== */}
             <motion.div
                 className="
                     absolute
@@ -253,9 +236,6 @@ export default function FlowerGarden() {
             </motion.div>
 
 
-            {/* =====================================================
-                FLOWER 3
-            ====================================================== */}
             <motion.div
                 className="
                     absolute
@@ -293,13 +273,6 @@ export default function FlowerGarden() {
                 <Flower className="w-full" />
             </motion.div>
 
-
-            {/* =====================================================
-                BUTTERFLY
-
-                Slightly more movement than the flowers so it
-                feels alive rather than just swaying.
-            ====================================================== */}
             <motion.div
                 className="
                     absolute

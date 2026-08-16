@@ -1,5 +1,5 @@
 
-import red from "../../assets/red.png"
+import red from "../../assets/rectangle.png"
 export default function RedRectangle() {
     return (
         <img 

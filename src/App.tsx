@@ -1,29 +1,45 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
+
 
 import FlowerGarden from "./components/deco/FlowerSomething";
 import RedRectangle from "./components/deco/RedSomething";
 
 import candyshet from "./assets/candyshet.png";
 import stringshet from "./assets/stringshet.png";
-import pseudoletter from "./assets/pseudoletter.png";
-import heart from "./assets/heart.png";
-import clock from "./assets/clock.png";
+import pseudoletter from "./assets/pseudoletter.webp";
+import poster from "./assets/poster.png"
+import heart from "./assets/heart.webp";
+import clock from "./assets/clock.webp";
 
 import Bear from "./components/deco/Bear";
 
 import Envelope from "./components/scroll/Envelope";
 import FlyingElements from "./components/deco/FlyingElements";
+import MusicPlayer from "./components/music/MusicPlayer";
 
 export default function App() {
+  const [musicStarted, setMusicStarted] = useState(false);
   return (
-    <div className="relative min-h-screen overflow-hidden justify-center align-middle">
-
+    <div className="relative min-h-screen overflow-hidden justify-center align-middle ">
+      <MusicPlayer play={musicStarted} />
 
       <div
         className="
           absolute
           inset-0
           bg-[url(./assets/background.webp)]
+          bg-center
+          opacity-30
+          pointer-events-none
+        "
+      />
+
+      <div
+        className="
+          absolute
+          inset-0
+          bg-[#7e6597]
           bg-center
           opacity-30
           pointer-events-none
@@ -75,6 +91,35 @@ export default function App() {
           repeat: Infinity,
           ease: "easeInOut",
         }}
+      />
+
+      <motion.img 
+        src={poster}
+        alt=""
+        className="
+          absolute
+          top-25
+          -right-10
+          w-25
+
+          sm:w-45
+          sm:-right-20
+          sm:top-70
+
+          origin-top
+          rotate-40
+        "
+
+        animate={{
+          rotate: [-20, -18, -22, -19, -20],
+          y: [0, 1, 0, 1, 0],
+        }}
+        transition={{
+          duration: 6,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      
       />
 
 
@@ -137,10 +182,13 @@ export default function App() {
         alt=""
         className="
           absolute
-          -right-50
+          -right-20
+          -top-20
           sm:-right-70
           -z-15
           origin-center
+          w-200
+          -rotate-10
         "
         animate={{
           rotate: [30, 31.5, 29, 30.8, 30],
@@ -242,7 +290,9 @@ export default function App() {
 
 
       <div className="absolute inset-0 z-10 flex items-center justify-center">
-        <Envelope />
+        <Envelope onOpen={() => {
+          setMusicStarted(true)
+        }}/>
       </div>
 
     </div>

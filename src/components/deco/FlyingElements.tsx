@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 import butterfly from "../../assets/butterfly.png";
-import heart from "../../assets/heart.png";
-import heart2 from "../../assets/heart2.png";
+import heart from "../../assets/heart.webp";
+import heart2 from "../../assets/heart2.webp";
 
 type FlyingElement = {
   id: number;
@@ -26,13 +26,7 @@ export default function FlyingElements() {
     let id = 0;
 
     const spawnElement = () => {
-      /*
-       * Randomly choose what will fly.
-       *
-       * 60%  = butterfly
-       * 20%  = heart
-       * 20%  = heart2
-       */
+
       const random = Math.random();
 
       let type: FlyingElement["type"];
@@ -45,9 +39,7 @@ export default function FlyingElements() {
         type = "heart2";
       }
 
-      /*
-       * Random starting side
-       */
+
       const startFromLeft = Math.random() > 0.5;
 
       const startX = startFromLeft ? -15 : 105;
@@ -64,9 +56,7 @@ export default function FlyingElements() {
         )
       );
 
-      /*
-       * Different sizes depending on element
-       */
+
       let size: number;
 
       if (type === "butterfly") {
@@ -102,9 +92,6 @@ export default function FlyingElements() {
         newElement,
       ]);
 
-      /*
-       * Remove the element after animation finishes
-       */
       setTimeout(() => {
         setElements((current) =>
           current.filter(
@@ -113,9 +100,7 @@ export default function FlyingElements() {
         );
       }, (newElement.duration + 1) * 1000);
 
-      /*
-       * Spawn another one after 2.5–6 seconds
-       */
+
       const nextSpawn =
         Math.random() * 3500 + 2500;
 
@@ -125,9 +110,7 @@ export default function FlyingElements() {
       );
     };
 
-    /*
-     * Initial delay
-     */
+
     timeout = setTimeout(
       spawnElement,
       2500
@@ -149,9 +132,7 @@ export default function FlyingElements() {
       "
     >
       {elements.map((element) => {
-        /*
-         * Choose the correct image
-         */
+
         let image;
 
         if (element.type === "butterfly") {
@@ -199,9 +180,6 @@ export default function FlyingElements() {
                 element.rotate,
               ],
 
-              /*
-               * Wavy flight path
-               */
               x: [
                 0,
                 50,
@@ -225,9 +203,7 @@ export default function FlyingElements() {
               duration: element.duration,
               ease: "easeInOut",
 
-              /*
-               * Five animation points = five timing points
-               */
+
               times: [
                 0,
                 0.25,
