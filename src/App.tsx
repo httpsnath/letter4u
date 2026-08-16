@@ -11,16 +11,13 @@ import clock from "./assets/clock.png";
 
 import Bear from "./components/deco/Bear";
 
-import RomanticEnvelope from "./components/scroll/Envelope";
+import Envelope from "./components/scroll/Envelope";
 import FlyingElements from "./components/deco/FlyingElements";
 
 export default function App() {
   return (
     <div className="relative min-h-screen overflow-hidden justify-center align-middle">
 
-      {/* =========================================================
-          BACKGROUND
-      ========================================================== */}
 
       <div
         className="
@@ -34,13 +31,7 @@ export default function App() {
       />
 
 
-      {/* =========================================================
-          TOP RED DECORATION
 
-          Kept mostly still because this is a large decorative
-          element. A tiny floating movement prevents it from
-          looking completely static.
-      ========================================================== */}
 
       <motion.div
         className="absolute -top-10 -left-5"
@@ -59,11 +50,7 @@ export default function App() {
       </motion.div>
 
 
-      {/* =========================================================
-          CLOCK
 
-          Very slow pendulum-like movement.
-      ========================================================== */}
 
       <motion.img
         src={clock}
@@ -91,11 +78,6 @@ export default function App() {
       />
 
 
-      {/* =========================================================
-          HEART
-
-          Gentle floating effect.
-      ========================================================== */}
 
       <motion.img
         src={heart}
@@ -124,14 +106,7 @@ export default function App() {
       />
 
 
-      {/* =========================================================
-          STRING SHEET
 
-          VERY subtle movement.
-
-          This one should barely move because it's a large
-          background decoration.
-      ========================================================== */}
 
       <motion.img
         src={stringshet}
@@ -155,11 +130,7 @@ export default function App() {
       />
 
 
-      {/* =========================================================
-          PSEUDO LETTER
 
-          Slow floating / paper-like movement.
-      ========================================================== */}
 
       <motion.img
         src={pseudoletter}
@@ -185,14 +156,7 @@ export default function App() {
       />
 
 
-      {/* =========================================================
-          BEAR
 
-          Very subtle rocking.
-
-          We preserve your -rotate-10 by using an outer wrapper
-          for the static rotation and an inner motion wrapper.
-      ========================================================== */}
 
       <motion.div
         className="
@@ -230,19 +194,12 @@ export default function App() {
       </motion.div>
 
 
-      {/* =========================================================
-          BOTTOM FLOWERS
-      ========================================================== */}
+
 
       <FlowerGarden />
 
 
-      {/* =========================================================
-          CANDY SHEET
 
-          Since this hangs off the bottom/right side, give it
-          a very slow swinging motion.
-      ========================================================== */}
 
       <motion.img
         src={candyshet}
@@ -278,25 +235,14 @@ export default function App() {
       />
 
 
-      {/* =========================================================
-          FLYING ELEMENTS
 
-          Butterflies/hearts already have their own animation,
-          so DON'T put another motion animation around them.
-      ========================================================== */}
 
       <FlyingElements />
 
 
-      {/* =========================================================
-          ENVELOPE
-
-          Keep this completely still until the user interacts
-          with it.
-      ========================================================== */}
 
       <div className="absolute inset-0 z-10 flex items-center justify-center">
-        <RomanticEnvelope />
+        <Envelope />
       </div>
 
     </div>

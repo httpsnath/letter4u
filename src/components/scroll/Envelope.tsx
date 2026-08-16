@@ -1,14 +1,11 @@
 import { useState } from "react";
 import { motion, Variants } from "framer-motion";
+import LetterContent from "./LetterContent";
 
-export default function RomanticEnvelope() {
+export default function Envelope() {
   const [isOpen, setIsOpen] = useState(false);
 
-  /*
-   * ============================================================
-   * ENVELOPE WRAPPER
-   * ============================================================
-   */
+
   const wrapperVariants: Variants = {
     closed: {
       y: 0,
@@ -19,11 +16,7 @@ export default function RomanticEnvelope() {
     },
   };
 
-  /*
-   * ============================================================
-   * ENVELOPE BODY
-   * ============================================================
-   */
+
   const envelopeBodyVariants: Variants = {
     closed: {
       y: 0,
@@ -34,29 +27,7 @@ export default function RomanticEnvelope() {
     },
   };
 
-  /*
-   * ============================================================
-   * TOP FLAP ANIMATION
-   *
-   * Instead of flipping 180 degrees, the flap:
-   *
-   * CLOSED
-   *    ↓
-   *    \ /
-   *
-   * OPENING
-   *    \__
-   *       \
-   *
-   * OPEN
-   *    ─────────
-   *      hidden
-   *      behind
-   *
-   * The flap folds backward and is then hidden behind
-   * the envelope body.
-   * ============================================================
-   */
+
   const flapVariants: Variants = {
     closed: {
       rotateX: 0,
@@ -93,14 +64,7 @@ export default function RomanticEnvelope() {
     },
   };
 
-  /*
-   * ============================================================
-   * LETTER ANIMATION
-   *
-   * The letter waits for the flap to fold away first,
-   * then rises out of the envelope.
-   * ============================================================
-   */
+
   const letterVariants: Variants = {
     closed: {
       height: "85%",
@@ -130,9 +94,7 @@ export default function RomanticEnvelope() {
       zIndex: 40,
 
       transition: {
-        /*
-         * Wait for the flap to fold away.
-         */
+
         height: {
           duration: 0.9,
           delay: 0.55,
@@ -152,11 +114,7 @@ export default function RomanticEnvelope() {
     },
   };
 
-  /*
-   * ============================================================
-   * PAPER TEXTURE
-   * ============================================================
-   */
+
   const noiseTexture = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E")`;
 
   return (
@@ -179,12 +137,7 @@ export default function RomanticEnvelope() {
         }
       `}</style>
 
-      {/* ========================================================
-          ENVELOPE WRAPPER
 
-          overflow-visible is intentional because the letter
-          needs to grow outside the envelope.
-      ========================================================= */}
       <motion.div
         variants={wrapperVariants}
         initial="closed"
@@ -200,9 +153,7 @@ export default function RomanticEnvelope() {
           perspective: "1200px",
         }}
       >
-        {/* ======================================================
-            ENVELOPE BACK BODY
-        ====================================================== */}
+
         <motion.div
           variants={envelopeBodyVariants}
           className="
@@ -231,11 +182,6 @@ export default function RomanticEnvelope() {
           />
         </motion.div>
 
-        {/* ======================================================
-            LETTER
-
-            z-40 when open so it comes in front of everything.
-        ====================================================== */}
         <motion.div
           variants={letterVariants}
           className="
@@ -260,112 +206,10 @@ export default function RomanticEnvelope() {
           }}
         >
           <div className="max-w-prose mx-auto">
-            {/* ==================================================
-                LETTER TITLE
-            ================================================== */}
-            <h1
-              className="
-                text-3xl
-                font-serif
-                italic
-                text-rose-900
-                text-center
-                mb-8
-                border-b
-                border-rose-200
-                pb-4
-              "
-            >
-              Dear Charo,
-            </h1>
 
-            {/* ==================================================
-                LETTER CONTENT
-            ================================================== */}
-            <div
-              className="
-                font-serif
-                leading-relaxed
-                space-y-5
-                text-sm
-                md:text-base
-                text-rose-950/80
-                tracking-wide
-              "
-            >
-              <p>
-                Nunc convallis posuere nibh, vitae blandit augue posuere et.
-                Curabitur lobortis lorem at ipsum lacinia, ut vestibulum ligula
-                iaculis. Quisque aliquam faucibus consectetur. Suspendisse sit
-                amet nisi quis velit consectetur blandit in ac felis. Nunc sem
-                mi, egestas sit amet leo quis, hendrerit ornare sem. Vivamus
-                maximus ullamcorper sapien, vitae sollicitudin mauris interdum
-                at. Interdum et malesuada fames ac ante ipsum primis in
-                faucibus. Interdum et malesuada fames ac ante ipsum primis in
-                faucibus. Curabitur at consequat velit, porta ultricies turpis.
-                Sed nec tortor eu dolor scelerisque auctor sed sit amet tortor.
-                Suspendisse vel turpis aliquam, consectetur dui in, scelerisque
-                mi. Ut ultrices euismod tristique.
-              </p>
+            <LetterContent />
 
-              <p>
-                Nunc convallis posuere nibh, vitae blandit augue posuere et.
-                Curabitur lobortis lorem at ipsum lacinia, ut vestibulum ligula
-                iaculis. Quisque aliquam faucibus consectetur. Suspendisse sit
-                amet nisi quis velit consectetur blandit in ac felis. Nunc sem
-                mi, egestas sit amet leo quis, hendrerit ornare sem. Vivamus
-                maximus ullamcorper sapien, vitae sollicitudin mauris interdum
-                at. Interdum et malesuada fames ac ante ipsum primis in
-                faucibus. Interdum et malesuada fames ac ante ipsum primis in
-                faucibus. Curabitur at consequat velit, porta ultricies turpis.
-                Sed nec tortor eu dolor scelerisque auctor sed sit amet tortor.
-                Suspendisse vel turpis aliquam, consectetur dui in, scelerisque
-                mi. Ut ultrices euismod tristique.
-              </p>
 
-              <p>
-                Nunc convallis posuere nibh, vitae blandit augue posuere et.
-                Curabitur lobortis lorem at ipsum lacinia, ut vestibulum ligula
-                iaculis. Quisque aliquam faucibus consectetur. Suspendisse sit
-                amet nisi quis velit consectetur blandit in ac felis. Nunc sem
-                mi, egestas sit amet leo quis, hendrerit ornare sem. Vivamus
-                maximus ullamcorper sapien, vitae sollicitudin mauris interdum
-                at. Interdum et malesuada fames ac ante ipsum primis in
-                faucibus. Interdum et malesuada fames ac ante ipsum primis in
-                faucibus. Curabitur at consequat velit, porta ultricies turpis.
-                Sed nec tortor eu dolor scelerisque auctor sed sit amet tortor.
-                Suspendisse vel turpis aliquam, consectetur dui in, scelerisque
-                mi. Ut ultrices euismod tristique.
-              </p>
-
-              <p>
-                Nunc convallis posuere nibh, vitae blandit augue posuere et.
-                Curabitur lobortis lorem at ipsum lacinia, ut vestibulum ligula
-                iaculis. Quisque aliquam faucibus consectetur. Suspendisse sit
-                amet nisi quis velit consectetur blandit in ac felis. Nunc sem
-                mi, egestas sit amet leo quis, hendrerit ornare sem. Vivamus
-                maximus ullamcorper sapien, vitae sollicitudin mauris interdum
-                at. Interdum et malesuada fames ac ante ipsum primis in
-                faucibus. Interdum et malesuada fames ac ante ipsum primis in
-                faucibus. Curabitur at consequat velit, porta ultricies turpis.
-                Sed nec tortor eu dolor scelerisque auctor sed sit amet tortor.
-                Suspendisse vel turpis aliquam, consectetur dui in, scelerisque
-                mi. Ut ultrices euismod tristique.
-              </p>
-
-              <p className="pt-8 text-right italic text-rose-900">
-                Urs truly,
-                <br />
-
-                <span className="text-xl mt-2 block font-semibold">
-                  sheesh
-                </span>
-              </p>
-            </div>
-
-            {/* ==================================================
-                FOLD AWAY BUTTON
-            ================================================== */}
             {isOpen && (
               <div className="mt-12 flex justify-center pb-4">
                 <button
@@ -396,13 +240,7 @@ export default function RomanticEnvelope() {
           </div>
         </motion.div>
 
-        {/* ======================================================
-            ENVELOPE FRONT FLAPS
 
-            These remain stationary.
-
-            z-20
-        ====================================================== */}
         <motion.svg
           variants={envelopeBodyVariants}
           viewBox="0 0 300 200"
@@ -416,7 +254,7 @@ export default function RomanticEnvelope() {
             drop-shadow-[0_4px_10px_rgba(0,0,0,0.3)]
           "
         >
-          {/* LEFT FLAP */}
+
           <polygon
             points="0,0 145,100 0,200"
             fill="#9f1239"
@@ -428,7 +266,7 @@ export default function RomanticEnvelope() {
             opacity="0.4"
           />
 
-          {/* RIGHT FLAP */}
+
           <polygon
             points="300,0 155,100 300,200"
             fill="#9f1239"
@@ -440,7 +278,7 @@ export default function RomanticEnvelope() {
             opacity="0.4"
           />
 
-          {/* BOTTOM FLAP */}
+
           <polygon
             points="0,200 150,95 300,200"
             fill="#be123c"
@@ -454,7 +292,7 @@ export default function RomanticEnvelope() {
             opacity="0.4"
           />
 
-          {/* Gradient */}
+
           <defs>
             <linearGradient
               id="flapGradient"
@@ -477,17 +315,7 @@ export default function RomanticEnvelope() {
           </defs>
         </motion.svg>
 
-        {/* ======================================================
-            TOP FLAP
 
-            IMPORTANT:
-
-            This is NOT a full-envelope-sized element anymore.
-
-            It is only the actual top triangular flap.
-
-            It folds backward around its TOP EDGE.
-        ====================================================== */}
         <motion.div
           className="
             absolute
@@ -523,9 +351,7 @@ export default function RomanticEnvelope() {
               }
             }}
           >
-            {/* ==================================================
-                FRONT OF TOP FLAP
-            ================================================== */}
+
             <svg
               viewBox="0 0 300 110"
               preserveAspectRatio="none"
@@ -539,14 +365,14 @@ export default function RomanticEnvelope() {
                 backfaceVisibility: "hidden",
               }}
             >
-              {/* Main triangular flap */}
+
               <polygon
                 points="0,0 150,110 300,0"
                 fill="#e11d48"
                 filter="drop-shadow(0 5px 5px rgba(0,0,0,0.4))"
               />
 
-              {/* Edge highlight */}
+
               <path
                 d="M0,0 L150,110 L300,0"
                 stroke="#fda4af"
@@ -555,9 +381,6 @@ export default function RomanticEnvelope() {
                 opacity="0.5"
               />
 
-              {/* ==================================================
-                  WAX SEAL
-              ================================================== */}
               <g transform="translate(150, 100)">
                 <circle
                   cx="0"
@@ -585,12 +408,7 @@ export default function RomanticEnvelope() {
               </g>
             </svg>
 
-            {/* ==================================================
-                BACK OF TOP FLAP
 
-                This gives the flap a darker paper backside
-                while it folds backward.
-            ================================================== */}
             <svg
               viewBox="0 0 300 110"
               preserveAspectRatio="none"
@@ -621,9 +439,7 @@ export default function RomanticEnvelope() {
           </motion.div>
         </motion.div>
 
-        {/* ======================================================
-            OPENING HINT
-        ====================================================== */}
+
         {!isOpen && (
           <motion.div
             initial={{
